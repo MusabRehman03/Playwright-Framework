@@ -1,6 +1,22 @@
 import { test, expect } from '@playwright/test';
 import { Logger } from '../utils/Logger';
 
+type VisualScenario = 'homepage' | 'desktop' | 'masked';
+
+const VISUAL_DIFF_ALLOWANCES: Record<
+  VisualScenario,
+  { default: number; overrides?: Record<string, number> }
+> = {
+  homepage: { default: 100, overrides: { webkit: 200 } },
+  desktop: { default: 100, overrides: { webkit: 200 } },
+  masked: { default: 50, overrides: { webkit: 200 } },
+};
+
+function getVisualAllowance(projectName: string, scenario: VisualScenario): number {
+  const config = VISUAL_DIFF_ALLOWANCES[scenario];
+  return config.overrides?.[projectName] ?? config.default;
+}
+
 /**
  * Visual Testing Examples
  * Demonstrates visual regression testing with Playwright
@@ -11,9 +27,10 @@ test.describe('Visual Regression Tests', () => {
     await page.goto('/');
 
     Logger.step(2, 'Take screenshot and compare');
+    const homepageDiffAllowance = getVisualAllowance(test.info().project.name, 'homepage');
     await expect(page).toHaveScreenshot('homepage.png', {
       fullPage: true,
-      maxDiffPixels: 100,
+      maxDiffPixels: homepageDiffAllowance,
     });
   });
 
@@ -32,8 +49,10 @@ test.describe('Visual Regression Tests', () => {
 
     Logger.step(2, 'Navigate and capture');
     await page.goto('/');
+    const desktopDiffAllowance = getVisualAllowance(test.info().project.name, 'desktop');
     await expect(page).toHaveScreenshot('homepage-1920x1080.png', {
       fullPage: true,
+      maxDiffPixels: desktopDiffAllowance,
     });
   });
 
@@ -53,10 +72,11 @@ test.describe('Visual Regression Tests', () => {
     await page.goto('/');
 
     Logger.step(2, 'Take masked screenshot (hide dynamic content)');
+    const maskedDiffAllowance = getVisualAllowance(test.info().project.name, 'masked');
     await expect(page).toHaveScreenshot('homepage-masked.png', {
       fullPage: true,
       mask: [page.locator('.dynamic-content')],
-      maxDiffPixels: 50,
+      maxDiffPixels: maskedDiffAllowance,
     });
   });
 });

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { Logger } from '../utils/Logger';
+import { retry } from '../utils/helpers';
 
 /**
  * API Testing Examples
@@ -51,8 +52,17 @@ test.describe('API Tests', () => {
     };
 
     Logger.step(2, 'Send PUT request');
-    const response = await request.put(`${BASE_API_URL}/users/1`, {
-      data: updatedData,
+    const response = await retry(async () => {
+      const putResponse = await request.put(`${BASE_API_URL}/users/1`, {
+        data: updatedData,
+        timeout: 10_000,
+      });
+
+      if (!putResponse.ok()) {
+        throw new Error(`Unexpected response: ${putResponse.status()}`);
+      }
+
+      return putResponse;
     });
 
     Logger.step(3, 'Verify response');

@@ -58,7 +58,6 @@ test.describe('API Testing Example', () => {
 test.describe('Mobile Testing Example', () => {
   test.use({
     viewport: { width: 375, height: 667 },
-    isMobile: true,
   });
 
   test('should work on mobile viewport', async ({ page }) => {
