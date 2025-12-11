@@ -1,0 +1,11 @@
+node_modules
+test-results
+playwright-report
+dist
+build
+coverage
+*.log
+.git
+.env*
+package-lock.json
+yarn.lock

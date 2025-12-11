@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+test-results
+playwright-report
+screenshots
+.env
+.git
+.gitignore
+.vscode
+.idea
+*.log
+dist
+build
+coverage
