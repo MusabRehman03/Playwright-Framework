@@ -200,23 +200,23 @@ npm run report
 
 ### Compared to Default Playwright Setup
 
-| Feature                    | Default Setup | This Framework |
-| -------------------------- | ------------- | -------------- |
-| Folder Structure           | Basic         | ✅ Complete    |
-| Page Object Model          | ❌            | ✅ Included    |
-| Test Examples              | 1 basic       | ✅ 3 types     |
-| Utilities                  | ❌            | ✅ 3 helpers   |
-| CI/CD                      | ❌            | ✅ 2 workflows |
-| Linting                    | ❌            | ✅ Configured  |
-| Formatting                 | ❌            | ✅ Configured  |
-| Documentation              | Basic README  | ✅ 6 guides    |
-| Docker Support             | ❌            | ✅ Included    |
-| VS Code Integration        | ❌            | ✅ Full setup  |
-| Environment Config         | ❌            | ✅ Included    |
-| Test Data Generation       | ❌            | ✅ Included    |
-| Multiple Test Types        | ❌            | ✅ E2E/API/UI  |
-| Customization Guide        | ❌            | ✅ Checklist   |
-| Production Ready           | ❌            | ✅ Yes         |
+| Feature              | Default Setup | This Framework |
+| -------------------- | ------------- | -------------- |
+| Folder Structure     | Basic         | ✅ Complete    |
+| Page Object Model    | ❌            | ✅ Included    |
+| Test Examples        | 1 basic       | ✅ 3 types     |
+| Utilities            | ❌            | ✅ 3 helpers   |
+| CI/CD                | ❌            | ✅ 2 workflows |
+| Linting              | ❌            | ✅ Configured  |
+| Formatting           | ❌            | ✅ Configured  |
+| Documentation        | Basic README  | ✅ 6 guides    |
+| Docker Support       | ❌            | ✅ Included    |
+| VS Code Integration  | ❌            | ✅ Full setup  |
+| Environment Config   | ❌            | ✅ Included    |
+| Test Data Generation | ❌            | ✅ Included    |
+| Multiple Test Types  | ❌            | ✅ E2E/API/UI  |
+| Customization Guide  | ❌            | ✅ Checklist   |
+| Production Ready     | ❌            | ✅ Yes         |
 
 ## 🎓 Learning Resources Included
 

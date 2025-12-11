@@ -8,22 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Run Playwright Tests
-    timeout-minutes: 60
+  lint-and-typecheck:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        shardIndex: [1, 2]
-        shardTotal: [2]
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,30 +23,52 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      - name: Run linter
+      - name: Run ESLint
         run: npm run lint
 
       - name: Run Prettier check
         run: npm run format:check
 
+      - name: Run TypeScript type checking
+        run: npx tsc --noEmit
+
+  test:
+    needs: lint-and-typecheck
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.0-jammy
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2]
+        shardTotal: [2]
+    
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Run Playwright tests
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-        env:
-          CI: true
 
-      - name: Upload test results
-        if: always()
+      - name: Upload Playwright HTML Report
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shardIndex }}
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload test artifacts
-        if: always()
+      - name: Upload test results
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.shardIndex }}
@@ -69,8 +80,6 @@ jobs:
     if: always()
     needs: [test]
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     
     steps:
       - name: Checkout code
