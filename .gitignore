@@ -62,7 +62,7 @@ playwright/.auth/
 
 # IDE
 .idea/
-.vscode/
+# .vscode/ # Uncomment to ignore VS Code settings
 *.swp
 *.swo
 *~

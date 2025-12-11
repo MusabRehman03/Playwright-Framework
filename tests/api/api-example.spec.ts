@@ -11,11 +11,11 @@ test.describe('API Tests', () => {
   test('GET request - fetch users', async ({ request }) => {
     Logger.step(1, 'Send GET request to /users');
     const response = await request.get(`${BASE_API_URL}/users`);
-    
+
     Logger.step(2, 'Verify response status');
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
-    
+
     Logger.step(3, 'Verify response body');
     const users = await response.json();
     expect(Array.isArray(users)).toBeTruthy();
@@ -29,15 +29,15 @@ test.describe('API Tests', () => {
       username: 'testuser',
       email: 'test@example.com',
     };
-    
+
     Logger.step(2, 'Send POST request');
     const response = await request.post(`${BASE_API_URL}/users`, {
       data: newUser,
     });
-    
+
     Logger.step(3, 'Verify response');
     expect(response.status()).toBe(201);
-    
+
     const createdUser = await response.json();
     expect(createdUser).toMatchObject(newUser);
     expect(createdUser.id).toBeDefined();
@@ -49,12 +49,12 @@ test.describe('API Tests', () => {
       name: 'Updated Name',
       email: 'updated@example.com',
     };
-    
+
     Logger.step(2, 'Send PUT request');
     const response = await request.put(`${BASE_API_URL}/users/1`, {
       data: updatedData,
     });
-    
+
     Logger.step(3, 'Verify response');
     expect(response.ok()).toBeTruthy();
     const result = await response.json();
@@ -64,7 +64,7 @@ test.describe('API Tests', () => {
   test('DELETE request - delete user', async ({ request }) => {
     Logger.step(1, 'Send DELETE request');
     const response = await request.delete(`${BASE_API_URL}/users/1`);
-    
+
     Logger.step(2, 'Verify response');
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
@@ -73,7 +73,7 @@ test.describe('API Tests', () => {
   test('Response headers validation', async ({ request }) => {
     Logger.step(1, 'Send request and get headers');
     const response = await request.get(`${BASE_API_URL}/users/1`);
-    
+
     Logger.step(2, 'Verify headers');
     expect(response.headers()['content-type']).toContain('application/json');
   });
@@ -84,7 +84,7 @@ test.describe('API Tests', () => {
     await request.get(`${BASE_API_URL}/users`);
     const endTime = Date.now();
     const responseTime = endTime - startTime;
-    
+
     Logger.step(2, 'Verify response time is acceptable');
     expect(responseTime).toBeLessThan(3000); // Less than 3 seconds
   });

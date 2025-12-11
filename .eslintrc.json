@@ -15,18 +15,18 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "playwright"
-  ],
+  "plugins": ["@typescript-eslint", "playwright"],
   "rules": {
     "no-console": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { 
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_" 
-    }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "playwright/no-wait-for-timeout": "warn",
     "playwright/no-element-handle": "warn",
     "playwright/no-eval": "error",
@@ -34,11 +34,5 @@
     "playwright/no-skipped-test": "warn",
     "playwright/valid-expect": "error"
   },
-  "ignorePatterns": [
-    "node_modules/",
-    "test-results/",
-    "playwright-report/",
-    "dist/",
-    "build/"
-  ]
+  "ignorePatterns": ["node_modules/", "test-results/", "playwright-report/", "dist/", "build/"]
 }

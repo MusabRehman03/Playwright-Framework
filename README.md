@@ -60,17 +60,20 @@ Playwright-Framework/
 ## 📦 Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/MusabRehman03/Playwright-Framework.git
    cd Playwright-Framework
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Install Playwright browsers:**
+
    ```bash
    npx playwright install --with-deps
    ```
@@ -180,6 +183,7 @@ test('API test example', async ({ request }) => {
 ### Playwright Configuration
 
 Edit `playwright.config.ts` to customize:
+
 - Test directory
 - Timeouts
 - Retries
@@ -191,6 +195,7 @@ Edit `playwright.config.ts` to customize:
 ### Environment Configuration
 
 Edit `.env` file or `tests/config/env.config.ts` for environment-specific settings:
+
 - Base URLs
 - API endpoints
 - Timeouts
@@ -220,6 +225,7 @@ The project includes two workflows:
 ### Running in CI
 
 The tests automatically run on:
+
 - Push to `main`, `master`, or `develop` branches
 - Pull requests to these branches
 - Manual workflow dispatch
@@ -233,6 +239,7 @@ Test reports are generated in multiple formats:
 - **JUnit Report**: `test-results/junit.xml`
 
 View the HTML report:
+
 ```bash
 npm run report
 ```
@@ -290,6 +297,7 @@ MIT License - feel free to use this starter kit for your projects!
 ## 🙋 Support
 
 For issues and questions:
+
 - Create an issue in the repository
 - Check Playwright documentation
 - Join Playwright community on Discord

@@ -40,8 +40,7 @@ export function formatDate(date: Date = new Date()): string {
  * @returns True if element exists, false otherwise
  */
 export async function elementExists(page: Page, selector: string): Promise<boolean> {
-  const element = await page.$(selector);
-  return element !== null;
+  return (await page.locator(selector).count()) > 0;
 }
 
 /**

@@ -15,7 +15,7 @@ export class HomePage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    
+
     // Initialize locators
     this.searchInput = page.locator('input[type="search"]');
     this.searchButton = page.locator('button[type="submit"]');

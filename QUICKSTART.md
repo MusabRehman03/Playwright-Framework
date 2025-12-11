@@ -43,13 +43,13 @@ import { test, expect } from '@playwright/test';
 test('my first test', async ({ page }) => {
   // Navigate to a page
   await page.goto('https://example.com');
-  
+
   // Check the title
   await expect(page).toHaveTitle(/Example/);
-  
+
   // Click a button
   await page.click('text=More information');
-  
+
   // Verify URL changed
   expect(page.url()).toContain('iana.org');
 });
@@ -65,11 +65,11 @@ import { BasePage } from './BasePage';
 
 export class MyPage extends BasePage {
   readonly loginButton = this.page.getByRole('button', { name: 'Login' });
-  
+
   constructor(page: Page) {
     super(page);
   }
-  
+
   async clickLogin() {
     await this.clickElement(this.loginButton);
   }
@@ -124,6 +124,7 @@ npm run test:ui
 ```
 
 This gives you a GUI to:
+
 - See your tests
 - Watch them run step by step
 - Inspect DOM at each step
@@ -167,6 +168,7 @@ cp .env.example .env
 ```
 
 Edit `.env`:
+
 ```
 BASE_URL=http://localhost:3000
 NODE_ENV=development
@@ -191,6 +193,7 @@ npm run report
 ```
 
 Opens an interactive HTML report showing:
+
 - Pass/fail status
 - Screenshots
 - Videos
@@ -200,6 +203,7 @@ Opens an interactive HTML report showing:
 ### Terminal Output
 
 Tests show results in terminal by default with:
+
 - ✓ for passed tests
 - ✗ for failed tests
 - Timing information
