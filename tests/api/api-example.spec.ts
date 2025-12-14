@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { Logger } from '../utils/Logger';
-import { retry } from '../utils/helpers';
+import { Logger } from '../../utils/Logger';
+import { retry } from '../../utils/helpers';
 
 /**
  * API Testing Examples

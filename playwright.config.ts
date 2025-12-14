@@ -12,6 +12,10 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
+  // Normalize snapshot filenames using the Playwright project name (no OS suffix) so you can drop
+  // design-system baselines like homepage-chromium.png straight into the snapshots folder.
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
+
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
 
