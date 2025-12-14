@@ -1,4 +1,4 @@
-import { test, expect } from "fixtures/baseFixtures";
+import { test, expect } from 'fixtures/baseFixtures';
 import { Logger } from '../../utils/Logger';
 
 /**
