@@ -1,5 +1,5 @@
-import { test, expect } from '../fixtures/baseFixtures';
-import { Logger } from '../utils/Logger';
+import { test, expect } from 'fixtures/baseFixtures';
+import { Logger } from '../../utils/Logger';
 
 /**
  * Example E2E test suite

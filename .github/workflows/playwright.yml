@@ -57,6 +57,8 @@ jobs:
         run: npm ci
 
       - name: Run Playwright tests
+        env:
+          HOME: /root
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: Upload Playwright HTML Report

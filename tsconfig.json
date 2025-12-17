@@ -12,12 +12,12 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["tests/pages/*"],
+      "@pages/*": ["pages/*"],
       "@fixtures/*": ["tests/fixtures/*"],
-      "@utils/*": ["tests/utils/*"],
-      "@config/*": ["tests/config/*"]
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"]
     }
   },
-  "include": ["tests/**/*"],
+  "include": ["tests/**/*", "pages", "utils", "config"],
   "exclude": ["node_modules", "test-results", "playwright-report"]
 }
